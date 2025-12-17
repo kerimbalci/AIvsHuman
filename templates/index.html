@@ -327,11 +327,231 @@ input[type=file] {
     color: #667eea;
     font-weight: 600;
 }
+
+/* Legal Disclaimer Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    animation: modalSlideIn 0.4s ease;
+    margin: 20px;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-content h2 {
+    color: #d32f2f;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-content .warning-icon {
+    font-size: 1.5em;
+}
+
+.modal-content h3 {
+    color: #333;
+    font-size: 1.3em;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.modal-content ul {
+    margin: 15px 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.modal-content li {
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.modal-content li:before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.modal-content strong {
+    color: #d32f2f;
+    font-weight: 700;
+}
+
+.disclaimer-box {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 25px 0;
+    padding: 15px;
+    background: #f5f7fa;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.checkbox-container:hover {
+    background: #e8ecf3;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.checkbox-container label {
+    cursor: pointer;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-accept {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-accept:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn-accept:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-decline {
+    background: #f5f5f5;
+    color: #666;
+    border: 2px solid #ddd;
+}
+
+.btn-decline:hover {
+    background: #e0e0e0;
+    border-color: #ccc;
+}
+
+.hidden {
+    display: none;
+}
 </style>
 </head>
 <body>
 
-<div class="container">
+<!-- Legal Disclaimer Modal -->
+<div class="modal-overlay" id="legalModal">
+    <div class="modal-content">
+        <h2>
+            <span class="warning-icon">⚠️</span>
+            Önemli Bilgilendirme ve Sorumluluk Reddi
+        </h2>
+        
+        <p>Bu uygulama, bir üniversite ödevi kapsamında <strong>eğitim ve araştırma amacıyla</strong> geliştirilmiştir. Aşağıdaki hususların göz önünde bulundurulması önemle rica olunur:</p>
+        
+        <ul>
+            <li>
+                <strong>Kesinlik Garantisi Yoktur:</strong> Uygulama tarafından sunulan analiz sonuçları (AI veya İnsan tahmini), yapay zeka modelinin eğitim verilerine dayalı bir olasılık hesabı olup %100 doğruluk garanti etmez.
+            </li>
+            <li>
+                <strong>Kullanım Amacı:</strong> Bu sistem ticari bir ürün veya profesyonel bir denetim aracı değildir. Buradan elde edilen sonuçlara dayanılarak alınan kararlardan geliştirici sorumlu tutulamaz.
+            </li>
+            <li>
+                <strong>Yasal Sorumluluk:</strong> Bu yazılım "olduğu gibi" sunulmaktadır. Yazılımın kullanımından doğabilecek doğrudan veya dolaylı hiçbir zarardan geliştirici yasal olarak sorumlu değildir.
+            </li>
+        </ul>
+        
+        <div class="disclaimer-box">
+            <p style="margin: 0; font-weight: 600;">
+                ⚖️ Bu uygulamayı kullanarak, yukarıdaki şartları okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan edersiniz.
+            </p>
+        </div>
+        
+        <div class="checkbox-container" onclick="toggleCheckbox()">
+            <input type="checkbox" id="agreeCheckbox">
+            <label for="agreeCheckbox">Okudum, anladım ve kabul ediyorum</label>
+        </div>
+        
+        <div class="modal-buttons">
+            <button class="modal-btn btn-decline" onclick="declineTerms()">❌ Kabul Etmiyorum</button>
+            <button class="modal-btn btn-accept" id="acceptBtn" disabled onclick="acceptTerms()">✅ Kabul Ediyorum</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="mainContent" style="display: none;">
     <header>
         <h1>🤖 AI vs Human</h1>
         <p>Görüntü Tespit Sistemi</p>
@@ -424,6 +644,53 @@ input[type=file] {
 </div>
 
 <script>
+// Legal Modal Functions
+function toggleCheckbox() {
+    const checkbox = document.getElementById('agreeCheckbox');
+    checkbox.checked = !checkbox.checked;
+    updateAcceptButton();
+}
+
+function updateAcceptButton() {
+    const checkbox = document.getElementById('agreeCheckbox');
+    const acceptBtn = document.getElementById('acceptBtn');
+    acceptBtn.disabled = !checkbox.checked;
+}
+
+function acceptTerms() {
+    const modal = document.getElementById('legalModal');
+    const mainContent = document.getElementById('mainContent');
+    
+    modal.style.display = 'none';
+    mainContent.style.display = 'block';
+    
+    // Save acceptance in localStorage
+    localStorage.setItem('termsAccepted', 'true');
+    localStorage.setItem('termsAcceptedDate', new Date().toISOString());
+}
+
+function declineTerms() {
+    alert('Şartları kabul etmeden uygulamayı kullanamazsınız. Sayfa kapatılacak.');
+    window.close();
+    // If window.close() doesn't work (modern browsers), redirect
+    setTimeout(() => {
+        window.location.href = 'about:blank';
+    }, 100);
+}
+
+// Check if terms were previously accepted
+window.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('agreeCheckbox');
+    checkbox.addEventListener('change', updateAcceptButton);
+    
+    const termsAccepted = localStorage.getItem('termsAccepted');
+    if (termsAccepted === 'true') {
+        document.getElementById('legalModal').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+    }
+});
+
+// File Upload Functions
 const fileInput = document.getElementById('fileInput');
 const uploadArea = document.getElementById('uploadArea');
 const selectedFile = document.getElementById('selectedFile');
