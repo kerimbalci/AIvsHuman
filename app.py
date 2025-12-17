@@ -12,27 +12,16 @@ os.makedirs(STATIC_PLOT_FOLDER, exist_ok=True)
 
 @app.route('/')
 def index():
-    # Eğitim/test kayıp ve doğruluk değerleri
-    train_loss = [0.9, 0.7, 0.5, 0.3]
-    val_loss = [0.95, 0.75, 0.55, 0.35]
-    train_acc = [60, 70, 80, 90]
-    val_acc = [58, 68, 78, 88]
+    # --- BURASI GÜNCELLENDİ (Senin verdiğin loglardaki değerler) ---
+    train_loss = [0.5034, 0.4607, 0.4487]
+    val_loss = [0.4379, 0.4343, 0.4456]
+    train_acc = [79.36, 82.70, 83.44]
+    val_acc = [84.21, 84.26, 83.36]
 
-    # Test sonuçları (gerçek değerler)
+    # --- BURASI GÜNCELLENDİ (Test sonuçları gerçek değerler) ---
     y_true = [1, 0, 1, 1, 0, 0, 1, 0, 0, 0]
     y_pred = [1, 0, 1, 1, 0, 0, 1, 0, 1, 0]
-    y_prob = [p[1] for p in [
-        [0.0574, 0.9426],
-        [0.8526, 0.1474],
-        [0.0210, 0.9789],
-        [0.123, 0.877],
-        [0.9, 0.1],
-        [0.8, 0.2],
-        [0.15, 0.85],
-        [0.7, 0.3],
-        [0.6, 0.4],
-        [0.05, 0.95]
-    ]]
+    y_prob = [0.9426, 0.1474, 0.9789, 0.877, 0.1, 0.2, 0.85, 0.3, 0.4, 0.95]
 
     # Grafikleri oluştur
     save_training_plots(train_loss, val_loss, train_acc, val_acc, folder=STATIC_PLOT_FOLDER)
@@ -69,6 +58,5 @@ def uploaded_file(filename):
 
 
 if __name__ == "__main__":
-    # Railway'in verdiği PORT'u kullan, yoksa 5000'de çalış
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    # Portu direkt 8080 olarak sabitliyoruz
+    app.run(host='0.0.0.0', port=8080)
