@@ -13,7 +13,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
     min-height: 100vh;
     padding: 20px;
 }
@@ -234,6 +234,21 @@ input[type=file] {
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.graph-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.graph-card h3 {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
 }
 
 .graph-card img {
@@ -384,6 +399,23 @@ input[type=file] {
         <div class="graphs-grid" id="plots">
             {% for file in files %}
             <div class="graph-card">
+                <h3>
+                    {% if 'accuracy' in file.lower() %}
+                        📈 Doğruluk Grafiği
+                    {% elif 'loss' in file.lower() %}
+                        📉 Kayıp Grafiği
+                    {% elif 'confusion' in file.lower() %}
+                        🎯 Karmaşıklık Matrisi
+                    {% elif 'roc' in file.lower() %}
+                        📊 ROC Eğrisi
+                    {% elif 'precision' in file.lower() %}
+                        🎯 Kesinlik Grafiği
+                    {% elif 'recall' in file.lower() %}
+                        🔍 Duyarlılık Grafiği
+                    {% else %}
+                        📊 {{ file.replace('.png', '').replace('_', ' ').title() }}
+                    {% endif %}
+                </h3>
                 <img src="{{ url_for('uploaded_file', filename=file) }}" alt="{{ file }}">
             </div>
             {% endfor %}
