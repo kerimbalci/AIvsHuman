@@ -6,3 +6,4 @@ Pillow
 werkzeug
 matplotlib
 scikit-learn
+seaborn
